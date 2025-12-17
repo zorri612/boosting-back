@@ -12,20 +12,20 @@ app.use(express.json()); // Para poder leer el body de las peticiones JSON
 const transporter = nodemailer.createTransport({
   service: 'gmail', // Puedes usar otros servicios como Outlook, Yahoo, etc.
   auth: {
-    user: 'zorrillanico200312@gmail.com', // ⚠️ Tu correo electrónico
+    user: 'juandavidzhenao@gmail.com', // ⚠️ Tu correo electrónico
     pass: process.env.GMAIL_APP_PASSWORD // ⚠️ La contraseña de aplicación, no la de tu cuenta.
   }
 });
 
 app.post('/enviar-correo', (req, res) => {
-  const { nombre, email, mensaje } = req.body;
+  const { nombre, email, telefono, mensaje } = req.body;
 
   // ⚠️ Nuevo HTML con diseño
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-        <h2 style="color: #333; text-align: center;">SOLICITUD SERVICIOS PÁGINA WEB</h2>
+        <h2 style="color: #333; text-align: center;">SOLICITUD SERVICIOS DE BOOSTING VÍA PÁGINA WEB</h2>
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
-            <p style="font-size: 16px; color: #555;">Alguien se interesó en los servicios de Boosting. Proveniente desde la página web.</p>
+            <p style="font-size: 16px; color: #555;">Hola Alejandro, alguien se interesó en los servicios de Boosting. Proveniente desde la página web www.boostingsas.com </p>
         </div>
         <div style="margin-top: 20px;">
             <h3 style="color: #007BFF;">Información:</h3>
@@ -35,6 +35,9 @@ app.post('/enviar-correo', (req, res) => {
                 </li>
                 <li style="margin-bottom: 10px; padding: 10px; border-left: 3px solid #007BFF; background-color: #f0f8ff;">
                     <strong>Email:</strong> ${email}
+                </li>
+                <li style="margin-bottom: 10px; padding: 10px; border-left: 3px solid #007BFF; background-color: #f0f8ff;">
+                    <strong>Teléfono:</strong> ${telefono}
                 </li>
                 <li style="margin-bottom: 10px; padding: 10px; border-left: 3px solid #007BFF; background-color: #f0f8ff;">
                     <strong>Mensaje adjunto:</strong> ${mensaje}
